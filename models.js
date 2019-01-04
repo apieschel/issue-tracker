@@ -6,7 +6,8 @@ let issueSchema = new Schema({
   text: String,
   created_by: String,
   assigned_to: String,
-  status: String
+  status: String,
+  project: String
 });
 
 let Issue = mongoose.model('Issue', issueSchema);
