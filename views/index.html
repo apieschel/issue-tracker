@@ -70,42 +70,8 @@
     <script src="https://code.jquery.com/jquery-2.2.1.min.js"
             integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
             crossorigin="anonymous"></script>
-    <script>
-      $(function() {
-        $('#testForm').submit(function(e) {
-          $.ajax({
-            url: '/api/issues/apitest',
-            type: 'post',
-            data: $('#testForm').serialize(),
-            success: function(data) {
-              $('#jsonResult').text(JSON.stringify(data));
-            }
-          });
-          e.preventDefault();
-        });
-        $('#testForm2').submit(function(e) {
-          $.ajax({
-            url: '/api/issues/apitest',
-            type: 'put',
-            data: $('#testForm2').serialize(),
-            success: function(data) {
-              $('#jsonResult').text(JSON.stringify(data));
-            }
-          });
-          e.preventDefault();
-        });
-        $('#testForm3').submit(function(e) {
-          $.ajax({
-            url: '/api/issues/apitest',
-            type: 'delete',
-            data: $('#testForm3').serialize(),
-            success: function(data) {
-              $('#jsonResult').text(JSON.stringify(data));
-            }
-          });
-          e.preventDefault();
-        });
-      });
+    <script src="/public/client.js">
+     
    </script>
   </body>
 </html>

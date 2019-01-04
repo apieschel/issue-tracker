@@ -43,7 +43,8 @@ module.exports = function (app) {
                 created_by: req.body.created_by, 
                 assigned_to: req.body.assigned_to,
                 status: req.body.status_text,
-                project: project
+                project: project,
+                open: true
               });
 
               newIssue.save(function(err, data) {

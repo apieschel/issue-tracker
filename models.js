@@ -7,8 +7,9 @@ let issueSchema = new Schema({
   created_by: String,
   assigned_to: String,
   status: String,
-  project: String
-});
+  project: String,
+  open: Boolean
+}, {timestamps: true} );
 
 let Issue = mongoose.model('Issue', issueSchema);
 
