@@ -60,10 +60,39 @@ module.exports = function (app) {
       if(req.body._id.length !== 24) {
         res.json("Please enter an ID that is exactly 24 characters.");
       } else {
-        Issue.findById(req.body_id, function(err, issue) {
+        Issue.findById(req.body._id, function(err, issue) {
+          console.log(req.body.issue_title);
+          console.log(req.body.issue_text);
+          console.log(req.body.created_by);
+          console.log(req.body.assigned_to);
+          console.log(req.body.status_text);
+          console.log(req.body.open);
+          
+          if(req.body.issue_title === "" && req.body.issue_text === "" && req.body.created_by === "" && req.body.assigned_to === "" ) {
+             
+          }
+          
+          if(req.body.issue_title) {
+            issue.title = req.body.issue_title; 
+          }
+          if(req.body.issue_text) {
+            issue.text = req.body.issue_text; 
+          }
+          if(req.body.created_by) {
+            issue.created_by = req.body.created_by; 
+          }
+          if(req.body.assigned_to) {
+            issue.assigned_to = req.body.assigned_to; 
+          }
+          if(req.body.status_text) {
+            issue.status = req.body.status_text; 
+          }
+          if(req.body.open) {
+            issue.open = false;
+          }
+          issue.save();
           res.json(issue); 
         });
-        const project = req.params.project;
       }
     })
     
