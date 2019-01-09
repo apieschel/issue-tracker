@@ -13,11 +13,15 @@ module.exports = function (app) {
       // Source: How to build a conditional query in Mongoose?
       // https://stackoverflow.com/questions/19693029/how-to-build-a-conditional-query-in-mongoose/19693726
     
-      var conditions = {};
+      let conditions = {};
 
       for (var key in req.query) {
         if (req.query.hasOwnProperty(key)) {
-          conditions[key] = new RegExp('^' + req.query[key] + '$', 'i');
+          if(key === 'open') {
+            conditions[key] = JSON.parse(req.query[key]);
+          } else {
+            conditions[key] = new RegExp('^' + req.query[key] + '$', 'i');
+          }
         }
       }
     
