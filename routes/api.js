@@ -20,7 +20,7 @@ module.exports = function (app) {
   app.route('/api/issues/:project')
   
     .get(function (req, res){
-      const project = req.params.project;
+      Issue.find
       
     })
     
