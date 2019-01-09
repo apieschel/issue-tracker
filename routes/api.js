@@ -57,48 +57,56 @@ module.exports = function (app) {
     })
     
     .put(function (req, res){
-      if(req.body._id.length !== 24) {
+      if(req.body._id === "" || req.body._id === undefined || req.body._id.length !== 24) {
         res.json("Please enter an ID that is exactly 24 characters.");
       } else {
-        Issue.findById(req.body._id, function(err, issue) {
-          console.log(req.body.issue_title);
-          console.log(req.body.issue_text);
-          console.log(req.body.created_by);
-          console.log(req.body.assigned_to);
-          console.log(req.body.status_text);
-          console.log(req.body.open);
-          
-          if(req.body.issue_title === "" && req.body.issue_text === "" && req.body.created_by === "" && req.body.assigned_to === "" && req.body.status_text === "" && req.body.open === undefined) {
-             res.json("No update fields sent.");
+        Issue.findById(req.body._id, function(err, issue) {   
+          if(issue === null || issue === undefined) {
+            res.json("Could not find that issue in our database.");
           } else {
-            if(req.body.issue_title) {
-              issue.title = req.body.issue_title; 
+            if(req.body.issue_title === "" && req.body.issue_text === "" && req.body.created_by === "" && req.body.assigned_to === "" && req.body.status_text === "" && req.body.open === undefined) {
+               res.json("No update fields sent.");
+            } else {
+              if(err) throw err;
+              if(req.body.issue_title) {
+                issue.title = req.body.issue_title; 
+              }
+              if(req.body.issue_text) {
+                issue.text = req.body.issue_text; 
+              }
+              if(req.body.created_by) {
+                issue.created_by = req.body.created_by; 
+              }
+              if(req.body.assigned_to) {
+                issue.assigned_to = req.body.assigned_to; 
+              }
+              if(req.body.status_text) {
+                issue.status = req.body.status_text; 
+              }
+              if(req.body.open) {
+                issue.open = false;
+              }
+              issue.save();
+              res.json("Update successful for the following issue: " + issue); 
             }
-            if(req.body.issue_text) {
-              issue.text = req.body.issue_text; 
-            }
-            if(req.body.created_by) {
-              issue.created_by = req.body.created_by; 
-            }
-            if(req.body.assigned_to) {
-              issue.assigned_to = req.body.assigned_to; 
-            }
-            if(req.body.status_text) {
-              issue.status = req.body.status_text; 
-            }
-            if(req.body.open) {
-              issue.open = false;
-            }
-            issue.save();
-            res.json("Update successful for the following issue: " + issue); 
           }
         });
       }
     })
     
     .delete(function (req, res){
-      const project = req.params.project;
-      
+      if(req.body._id === "" || req.body._id === undefined || req.body._id.length !== 24) {
+        res.json("Please enter an ID that is exactly 24 characters.");
+      } else {
+        Issue.findByIdAndDelete(req.body._id, function(err, issue) {
+          if(issue === null || issue === undefined) {
+            res.json("Could not find that issue in our database.");
+          } else {
+            if(err) throw err;
+            res.json("Your issue was successfully deleted.");
+          }
+        }); 
+      }
     });
     
 };
