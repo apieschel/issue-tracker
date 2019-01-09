@@ -24,10 +24,20 @@ suite('Functional Tests', function() {
           assert.equal(res.status, 200);
           expect(res.body).to.satisfy(function(issue) {
             if ((typeof issue === 'object') || (issue === "That issue is already in our database!")) {
-                if(typeof issue === 'object') {          
-                  if(issue.hasOwnProperty('title') && issue.hasOwnProperty('text') && issue.hasOwnProperty('created_by')) {
-                    console.log(issue);
-                    return true;
+                if(typeof issue === 'object') {
+                  console.log(issue._id);
+                  if(
+                     issue.hasOwnProperty('title') &&
+                     issue.hasOwnProperty('text') && 
+                     issue.hasOwnProperty('created_by') &&
+                     issue.hasOwnProperty('assigned_to') && 
+                     issue.hasOwnProperty('status') &&
+                     issue.hasOwnProperty('project') &&
+                     issue.hasOwnProperty('open') &&
+                     issue.hasOwnProperty('createdAt') &&
+                     issue.hasOwnProperty('updatedAt')
+                    ) {
+                        return true;
                   } else {
                     return false;
                   }
