@@ -24,7 +24,8 @@ suite('Functional Tests', function() {
           assert.equal(res.status, 200);
           expect(res.body).to.satisfy(function(issue) {
             if ((typeof issue === 'object') || (issue === "That issue is already in our database!")) {
-                if(typeof issue === 'object') {
+              // if the issue isn't already in the database, check that the returned object has all the correct properties  
+              if(typeof issue === 'object') {
                   console.log(issue._id);
                   if(
                      issue.hasOwnProperty('title') &&
@@ -41,7 +42,9 @@ suite('Functional Tests', function() {
                   } else {
                     return false;
                   }
-                } else {
+                } 
+                // if the issue is already in the database, then the check for the correct String message is above, so return true
+                else {
                   return true;
                 }
             } else {
