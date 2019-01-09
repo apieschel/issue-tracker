@@ -10,10 +10,30 @@ module.exports = function (app) {
   app.route('/api/issues/:project')
   
     .get(function (req, res){
-      console.log(req.query);
+      // Source: How to build a conditional query in Mongoose?
+      // https://stackoverflow.com/questions/19693029/how-to-build-a-conditional-query-in-mongoose/19693726
+    
+      var conditions = {};
+
+      for (var key in req.query) {
+        if (req.query.hasOwnProperty(key)) {
+          conditions[key] = new RegExp('^' + req.query[key] + '$', 'i');
+        }
+      }
+    
+      console.log(conditions);
+
+      const query = Issue.find(conditions);
+      query.exec(function(err, issues) {
+        if (err) throw err;
+        res.json({ characters: issues});
+      });
+    
+      /*
       Issue.find({project: "apitest"}, function(err, issues) {
         res.json(issues);
-      });    
+      });
+      */
     })
     
     .post(function (req, res){
