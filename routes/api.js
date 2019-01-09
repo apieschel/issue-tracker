@@ -20,7 +20,10 @@ module.exports = function (app) {
   app.route('/api/issues/:project')
   
     .get(function (req, res){
-      Issue.find
+      console.log(req.query);
+      Issue.find({project: "apitest"}, function(err, issues) {
+        res.json(issues);
+      });
       
     })
     
