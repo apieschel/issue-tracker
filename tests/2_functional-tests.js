@@ -1,6 +1,7 @@
 const chaiHttp = require('chai-http');
 const chai = require('chai');
 const assert = chai.assert;
+const expect = chai.expect;
 const server = require('../server');
 
 chai.use(chaiHttp);
@@ -21,8 +22,18 @@ suite('Functional Tests', function() {
         })
         .end(function(err, res){
           assert.equal(res.status, 200);
-          
-          //fill me in too!
+          expect(res.body).to.satisfy(function(issue) {
+            if ((typeof issue === 'object') || (issue === "That issue is already in our database!")) {
+                if(typeof issue === 'object') {
+                  console.log(res.body);
+                  
+                } else {
+                  return true;
+                }
+            } else {
+                return false;
+            }
+          });
           
           done();
         });
