@@ -1,19 +1,9 @@
-/*
-*
-*
-*       Complete the API routing below
-*
-*
-*/
-
 'use strict';
 
 const expect = require('chai').expect;
 const MongoClient = require('mongodb');
 const ObjectId = require('mongodb').ObjectID;
 const Issue = require("../models.js").issueModel;
-
-const CONNECTION_STRING = process.env.DB; //MongoClient.connect(CONNECTION_STRING, function(err, db) {});
 
 module.exports = function (app) {
 
@@ -23,8 +13,7 @@ module.exports = function (app) {
       console.log(req.query);
       Issue.find({project: "apitest"}, function(err, issues) {
         res.json(issues);
-      });
-      
+      });    
     })
     
     .post(function (req, res){

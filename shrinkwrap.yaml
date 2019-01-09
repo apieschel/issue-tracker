@@ -7,7 +7,7 @@ dependencies:
   helmet: 3.15.0
   mocha: 5.2.0
   mongodb: 3.1.10
-  mongoose: 5.4.2
+  mongoose: 5.4.3
   zombie: 6.1.4
 packages:
   /@types/chai/4.1.7:
@@ -990,7 +990,7 @@ packages:
       mongoose: '*'
     resolution:
       integrity: sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ==
-  /mongoose/5.4.2:
+  /mongoose/5.4.3:
     dependencies:
       async: 2.6.1
       bson: 1.1.0
@@ -1008,7 +1008,7 @@ packages:
     engines:
       node: '>=4.0.0'
     resolution:
-      integrity: sha512-bZFYe9oikiLZ2npfSbIGNYpJ0MJVQaSQhU09VFxvu6r7nVGixbt031ewZldKbWwHsG/JPJLX2HhUa8are84ryQ==
+      integrity: sha512-zhfypQm63CPYHi43O/3lTcEPVucY3h6CqONbzreMKZIEXtwgkB9HCm4wn441Z9/CpM94G6/NA3wcaRb0N2kPYQ==
   /mpath/0.5.1:
     dev: false
     engines:
@@ -1639,5 +1639,5 @@ specifiers:
   helmet: ^3.15.0
   mocha: ^5.2.0
   mongodb: ^3.1.10
-  mongoose: ^5.4.2
+  mongoose: ^5.4.3
   zombie: ^6.1.4
