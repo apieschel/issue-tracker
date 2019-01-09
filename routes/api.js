@@ -57,8 +57,14 @@ module.exports = function (app) {
     })
     
     .put(function (req, res){
-      const project = req.params.project;
-      
+      if(req.body._id.length !== 24) {
+        res.json("Please enter an ID that is exactly 24 characters.");
+      } else {
+        Issue.findById(req.body_id, function(err, issue) {
+          res.json(issue); 
+        });
+        const project = req.params.project;
+      }
     })
     
     .delete(function (req, res){
