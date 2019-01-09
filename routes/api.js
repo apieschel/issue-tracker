@@ -68,30 +68,30 @@ module.exports = function (app) {
           console.log(req.body.status_text);
           console.log(req.body.open);
           
-          if(req.body.issue_title === "" && req.body.issue_text === "" && req.body.created_by === "" && req.body.assigned_to === "" ) {
-             
+          if(req.body.issue_title === "" && req.body.issue_text === "" && req.body.created_by === "" && req.body.assigned_to === "" && req.body.status_text === "" && req.body.open === undefined) {
+             res.json("No update fields sent.");
+          } else {
+            if(req.body.issue_title) {
+              issue.title = req.body.issue_title; 
+            }
+            if(req.body.issue_text) {
+              issue.text = req.body.issue_text; 
+            }
+            if(req.body.created_by) {
+              issue.created_by = req.body.created_by; 
+            }
+            if(req.body.assigned_to) {
+              issue.assigned_to = req.body.assigned_to; 
+            }
+            if(req.body.status_text) {
+              issue.status = req.body.status_text; 
+            }
+            if(req.body.open) {
+              issue.open = false;
+            }
+            issue.save();
+            res.json("Update successful for the following issue: " + issue); 
           }
-          
-          if(req.body.issue_title) {
-            issue.title = req.body.issue_title; 
-          }
-          if(req.body.issue_text) {
-            issue.text = req.body.issue_text; 
-          }
-          if(req.body.created_by) {
-            issue.created_by = req.body.created_by; 
-          }
-          if(req.body.assigned_to) {
-            issue.assigned_to = req.body.assigned_to; 
-          }
-          if(req.body.status_text) {
-            issue.status = req.body.status_text; 
-          }
-          if(req.body.open) {
-            issue.open = false;
-          }
-          issue.save();
-          res.json(issue); 
         });
       }
     })
