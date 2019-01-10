@@ -43,8 +43,10 @@ module.exports = function (app) {
     .post(function (req, res){
       const project = req.params.project;
       const title = req.body.issue_title;
-      if(title === '' || title === undefined) {
-        res.json("Please  a title for your book.");
+      const text = req.body.issue_text; 
+      const created_by = req.body.created_by;
+      if(title === '' || title === undefined || text === '' || text === undefined || created_by === '' || created_by === undefined) {
+        res.json("Please fill out the title, text, and created_by fields.");
       } else {
         Issue.findOne({title: title}, function(err, data) {
           if(data !== null) {
@@ -55,8 +57,8 @@ module.exports = function (app) {
 
               let newIssue = new Issue({
                 title: title, 
-                text: req.body.issue_text, 
-                created_by: req.body.created_by, 
+                text: text, 
+                created_by: created_by, 
                 assigned_to: req.body.assigned_to,
                 status: req.body.status_text,
                 project: project,

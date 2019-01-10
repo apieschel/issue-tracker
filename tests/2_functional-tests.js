@@ -99,7 +99,15 @@ suite('Functional Tests', function() {
       });
       
       test('Missing required fields', function(done) {
-        
+        chai.request(server)
+        .post('/api/issues/test')
+        .send({
+        })
+        .end(function(err, res){
+          assert.equal(res.status, 200);
+          assert.equal(res.body, "Please fill out the title, text, and created_by fields.");  
+          done();
+        });
       });
       
     });
