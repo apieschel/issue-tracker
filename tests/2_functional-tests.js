@@ -101,8 +101,7 @@ suite('Functional Tests', function() {
       test('Missing required fields', function(done) {
         chai.request(server)
         .post('/api/issues/test')
-        .send({
-        })
+        .send({})
         .end(function(err, res){
           assert.equal(res.status, 200);
           assert.equal(res.body, "Please fill out the title, text, and created_by fields.");  
@@ -115,15 +114,36 @@ suite('Functional Tests', function() {
     suite('PUT /api/issues/{project} => text', function() {
       
       test('No body', function(done) {
-        
+        chai.request(server)
+        .put('/api/issues/test')
+        .send({})
+        .end(function(err, res){
+          assert.equal(res.status, 200);
+          assert.equal(res.body, "Please enter an ID that is exactly 24 characters.");
+          done();
+        });
       });
       
       test('One field to update', function(done) {
-        
+        chai.request(server)
+        .put('/api/issues/test')
+        .send({})
+        .end(function(err, res){
+          assert.equal(res.status, 200);
+          assert.equal(res.body, "Please enter an ID that is exactly 24 characters.");
+          done();
+        });
       });
       
       test('Multiple fields to update', function(done) {
-        
+        chai.request(server)
+        .put('/api/issues/test')
+        .send({})
+        .end(function(err, res){
+          assert.equal(res.status, 200);
+          assert.equal(res.body, "Please enter an ID that is exactly 24 characters.");
+          done();
+        });
       });
       
     });
@@ -133,8 +153,8 @@ suite('Functional Tests', function() {
       test('No filter', function(done) {
         chai.request(server)
         .get('/api/issues/test')
-        .query({})
         .end(function(err, res){
+          console.log(res.body);
           assert.equal(res.status, 200);
           assert.isArray(res.body);
           assert.property(res.body[0], 'issue_title');
