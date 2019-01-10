@@ -44,7 +44,7 @@ module.exports = function (app) {
       const project = req.params.project;
       const title = req.body.issue_title;
       if(title === '' || title === undefined) {
-        res.json("Please enter a title for your book.");
+        res.json("Please  a title for your book.");
       } else {
         Issue.findOne({title: title}, function(err, data) {
           if(data !== null) {

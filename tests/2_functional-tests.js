@@ -60,25 +60,21 @@ suite('Functional Tests', function() {
         chai.request(server)
         .post('/api/issues/test')
         .send({
-          issue_title: 'Title',
+          issue_title: 'Title 2',
           issue_text: 'text',
-          created_by: 'Functional Test - Every field filled in',
-          assigned_to: 'Chai and Mocha',
-          status_text: 'In QA'
+          created_by: 'Functional Test - Every field filled in'
         })
         .end(function(err, res){
           assert.equal(res.status, 200);
           expect(res.body).to.satisfy(function(issue) {
             if ((typeof issue === 'object') || (issue === "That issue is already in our database!")) {
-              // if the issue isn't already in the database, check that the returned object has all the correct properties  
+              // if the issue isn't already in the database, check that the returned object has all the required properties  
               if(typeof issue === 'object') {
                   console.log(issue._id);
                   if(
                      issue.hasOwnProperty('title') &&
                      issue.hasOwnProperty('text') && 
                      issue.hasOwnProperty('created_by') &&
-                     issue.hasOwnProperty('assigned_to') && 
-                     issue.hasOwnProperty('status') &&
                      issue.hasOwnProperty('project') &&
                      issue.hasOwnProperty('open') &&
                      issue.hasOwnProperty('createdAt') &&
