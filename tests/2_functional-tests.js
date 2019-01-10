@@ -26,7 +26,6 @@ suite('Functional Tests', function() {
             if ((typeof issue === 'object') || (issue === "That issue is already in our database!")) {
               // if the issue isn't already in the database, check that the returned object has all the correct properties  
               if(typeof issue === 'object') {
-                  console.log(issue._id);
                   if(
                      issue.hasOwnProperty('title') &&
                      issue.hasOwnProperty('text') && 
@@ -70,7 +69,6 @@ suite('Functional Tests', function() {
             if ((typeof issue === 'object') || (issue === "That issue is already in our database!")) {
               // if the issue isn't already in the database, check that the returned object has all the required properties  
               if(typeof issue === 'object') {
-                  console.log(issue._id);
                   if(
                      issue.hasOwnProperty('title') &&
                      issue.hasOwnProperty('text') && 
@@ -144,7 +142,8 @@ suite('Functional Tests', function() {
         .send({
           _id: '5c36a5694d68e916adf32e36', 
           issue_text: 'updated text',
-          assigned_to: 'me'
+          assigned_to: 'me',
+          status: 'unknown'
         })
         .end(function(err, res){
           assert.equal(res.status, 200);
@@ -202,10 +201,10 @@ suite('Functional Tests', function() {
         .get('/api/issues/test')
         .query({
           title: "Title",
-          open: false
+          open: false,
+          status: 'In QA'
         })
         .end(function(err, res){
-          console.log(res.body);
           assert.equal(res.status, 200);
           assert.isArray(res.body);
           assert.property(res.body[0], 'title');
