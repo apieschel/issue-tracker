@@ -98,7 +98,7 @@ module.exports = function (app) {
                 issue.open = false;
               }
               issue.save();
-              res.json("Update successful for the following issue: " + issue); 
+              res.json("Update successful"); 
             }
           }
         });

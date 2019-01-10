@@ -127,10 +127,13 @@ suite('Functional Tests', function() {
       test('One field to update', function(done) {
         chai.request(server)
         .put('/api/issues/test')
-        .send({_id: '5c36a5694d68e916adf32e35'})
+        .send({
+          _id: '5c36a5694d68e916adf32e35', 
+          open: true // this actually means the checkbox is checked, so "open" will be switched to "false"
+        })
         .end(function(err, res){
           assert.equal(res.status, 200);
-          assert.equal(res.body, "Please enter an ID that is exactly 24 characters.");
+          assert.equal(res.body, "Update successful");
           done();
         });
       });
@@ -138,14 +141,17 @@ suite('Functional Tests', function() {
       test('Multiple fields to update', function(done) {
         chai.request(server)
         .put('/api/issues/test')
-        .send({})
+        .send({
+          _id: '5c36a5694d68e916adf32e36', 
+          issue_text: 'updated text',
+          assigned_to: 'me'
+        })
         .end(function(err, res){
           assert.equal(res.status, 200);
-          assert.equal(res.body, "Please enter an ID that is exactly 24 characters.");
+          assert.equal(res.body, "Update successful");
           done();
         });
-      });
-      
+      });    
     });
     
     suite('GET /api/issues/{project} => Array of objects with issue data', function() {
@@ -173,7 +179,7 @@ suite('Functional Tests', function() {
       test('One filter', function(done) {
         chai.request(server)
         .get('/api/issues/test')
-        .query({title: "Title"})
+        .query({title: "Title 2"})
         .end(function(err, res){
           assert.equal(res.status, 200);
           assert.isArray(res.body);
@@ -183,10 +189,10 @@ suite('Functional Tests', function() {
           assert.property(res.body[0], 'createdAt');
           assert.property(res.body[0], 'updatedAt');
           assert.property(res.body[0], 'created_by');
-          assert.property(res.body[0], 'assigned_to');
           assert.property(res.body[0], 'open');
-          assert.property(res.body[0], 'status');
           assert.property(res.body[0], '_id');
+          assert.property(res.body[0], 'assigned_to');       
+          assert.property(res.body[0], 'status');
           done();
         });
       });
@@ -195,8 +201,8 @@ suite('Functional Tests', function() {
         chai.request(server)
         .get('/api/issues/test')
         .query({
-          title: "Title 2",
-          open: true
+          title: "Title",
+          open: false
         })
         .end(function(err, res){
           console.log(res.body);
@@ -209,7 +215,9 @@ suite('Functional Tests', function() {
           assert.property(res.body[0], 'updatedAt');
           assert.property(res.body[0], 'created_by');
           assert.property(res.body[0], 'open');
-          assert.property(res.body[0], '_id');
+          assert.property(res.body[0], '_id'); 
+          assert.property(res.body[0], 'assigned_to');       
+          assert.property(res.body[0], 'status');
           done();
         });
       });
