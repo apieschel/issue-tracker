@@ -153,29 +153,54 @@ suite('Functional Tests', function() {
       test('No filter', function(done) {
         chai.request(server)
         .get('/api/issues/test')
+        .query({})
         .end(function(err, res){
-          console.log(res.body);
           assert.equal(res.status, 200);
           assert.isArray(res.body);
-          assert.property(res.body[0], 'issue_title');
-          assert.property(res.body[0], 'issue_text');
-          assert.property(res.body[0], 'created_on');
-          assert.property(res.body[0], 'updated_on');
+          assert.property(res.body[0], 'title');
+          assert.property(res.body[0], 'text');
+          assert.property(res.body[0], 'createdAt');
+          assert.property(res.body[0], 'updatedAt');
           assert.property(res.body[0], 'created_by');
           assert.property(res.body[0], 'assigned_to');
           assert.property(res.body[0], 'open');
-          assert.property(res.body[0], 'status_text');
+          assert.property(res.body[0], 'status');
           assert.property(res.body[0], '_id');
           done();
         });
       });
       
       test('One filter', function(done) {
-        
+        chai.request(server)
+        .get('/api/issues/test')
+        .query({title: "Title"})
+        .end(function(err, res){
+          console.log(res.body);
+          assert.equal(res.status, 200);
+          assert.isArray(res.body);
+          assert.property(res.body[0], 'title');
+          assert.equal(res.body.length, 1, 'This query should only return 1 result')
+          assert.property(res.body[0], 'text');
+          assert.property(res.body[0], 'createdAt');
+          assert.property(res.body[0], 'updatedAt');
+          assert.property(res.body[0], 'created_by');
+          assert.property(res.body[0], 'assigned_to');
+          assert.property(res.body[0], 'open');
+          assert.property(res.body[0], 'status');
+          assert.property(res.body[0], '_id');
+          done();
+        });
       });
       
       test('Multiple filters (test for multiple fields you know will be in the db for a return)', function(done) {
-        
+        chai.request(server)
+        .put('/api/issues/test')
+        .send({})
+        .end(function(err, res){
+          assert.equal(res.status, 200);
+          assert.equal(res.body, "Please enter an ID that is exactly 24 characters.");
+          done();
+        });
       });
       
     });
@@ -183,11 +208,25 @@ suite('Functional Tests', function() {
     suite('DELETE /api/issues/{project} => text', function() {
       
       test('No _id', function(done) {
-        
+        chai.request(server)
+        .put('/api/issues/test')
+        .send({})
+        .end(function(err, res){
+          assert.equal(res.status, 200);
+          assert.equal(res.body, "Please enter an ID that is exactly 24 characters.");
+          done();
+        });
       });
       
       test('Valid _id', function(done) {
-        
+        chai.request(server)
+        .put('/api/issues/test')
+        .send({})
+        .end(function(err, res){
+          assert.equal(res.status, 200);
+          assert.equal(res.body, "Please enter an ID that is exactly 24 characters.");
+          done();
+        });
       });
       
     });

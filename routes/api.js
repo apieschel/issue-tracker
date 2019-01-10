@@ -30,14 +30,8 @@ module.exports = function (app) {
       const query = Issue.find(conditions);
       query.exec(function(err, issues) {
         if (err) throw err;
-        res.json({ characters: issues});
-      });
-    
-      /*
-      Issue.find({project: "apitest"}, function(err, issues) {
         res.json(issues);
       });
-      */
     })
     
     .post(function (req, res){
