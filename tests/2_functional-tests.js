@@ -57,7 +57,49 @@ suite('Functional Tests', function() {
       });
       
       test('Required fields filled in', function(done) {
-        
+        chai.request(server)
+        .post('/api/issues/test')
+        .send({
+          issue_title: 'Title',
+          issue_text: 'text',
+          created_by: 'Functional Test - Every field filled in',
+          assigned_to: 'Chai and Mocha',
+          status_text: 'In QA'
+        })
+        .end(function(err, res){
+          assert.equal(res.status, 200);
+          expect(res.body).to.satisfy(function(issue) {
+            if ((typeof issue === 'object') || (issue === "That issue is already in our database!")) {
+              // if the issue isn't already in the database, check that the returned object has all the correct properties  
+              if(typeof issue === 'object') {
+                  console.log(issue._id);
+                  if(
+                     issue.hasOwnProperty('title') &&
+                     issue.hasOwnProperty('text') && 
+                     issue.hasOwnProperty('created_by') &&
+                     issue.hasOwnProperty('assigned_to') && 
+                     issue.hasOwnProperty('status') &&
+                     issue.hasOwnProperty('project') &&
+                     issue.hasOwnProperty('open') &&
+                     issue.hasOwnProperty('createdAt') &&
+                     issue.hasOwnProperty('updatedAt')
+                    ) {
+                        return true;
+                  } else {
+                    return false;
+                  }
+                } 
+                // if the issue is already in the database, then the check for the correct String message is above, so return true
+                else {
+                  return true;
+                }
+            } else {
+                return false;
+            }
+          });
+          
+          done();
+        });
       });
       
       test('Missing required fields', function(done) {
