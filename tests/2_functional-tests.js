@@ -227,7 +227,7 @@ suite('Functional Tests', function() {
       
       test('No _id', function(done) {
         chai.request(server)
-        .put('/api/issues/test')
+        .delete('/api/issues/test')
         .send({})
         .end(function(err, res){
           assert.equal(res.status, 200);
@@ -238,11 +238,17 @@ suite('Functional Tests', function() {
       
       test('Valid _id', function(done) {
         chai.request(server)
-        .put('/api/issues/test')
-        .send({})
+        .delete('/api/issues/test')
+        .send({ _id: '5c36af6a799d5739a70795f5' }) // replace with the id of the issue you want to delete
         .end(function(err, res){
           assert.equal(res.status, 200);
-          assert.equal(res.body, "Please enter an ID that is exactly 24 characters.");
+          expect(res.body).to.satisfy(function (message) {
+                if ((message === 'Your issue was successfully deleted.') || (message === "Could not find that issue in our database.")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
           done();
         });
       });
