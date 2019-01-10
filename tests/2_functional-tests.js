@@ -127,7 +127,7 @@ suite('Functional Tests', function() {
       test('One field to update', function(done) {
         chai.request(server)
         .put('/api/issues/test')
-        .send({})
+        .send({_id: '5c36a5694d68e916adf32e35'})
         .end(function(err, res){
           assert.equal(res.status, 200);
           assert.equal(res.body, "Please enter an ID that is exactly 24 characters.");
@@ -175,7 +175,6 @@ suite('Functional Tests', function() {
         .get('/api/issues/test')
         .query({title: "Title"})
         .end(function(err, res){
-          console.log(res.body);
           assert.equal(res.status, 200);
           assert.isArray(res.body);
           assert.property(res.body[0], 'title');
@@ -194,11 +193,23 @@ suite('Functional Tests', function() {
       
       test('Multiple filters (test for multiple fields you know will be in the db for a return)', function(done) {
         chai.request(server)
-        .put('/api/issues/test')
-        .send({})
+        .get('/api/issues/test')
+        .query({
+          title: "Title 2",
+          open: true
+        })
         .end(function(err, res){
+          console.log(res.body);
           assert.equal(res.status, 200);
-          assert.equal(res.body, "Please enter an ID that is exactly 24 characters.");
+          assert.isArray(res.body);
+          assert.property(res.body[0], 'title');
+          assert.equal(res.body.length, 1, 'This query should only return 1 result')
+          assert.property(res.body[0], 'text');
+          assert.property(res.body[0], 'createdAt');
+          assert.property(res.body[0], 'updatedAt');
+          assert.property(res.body[0], 'created_by');
+          assert.property(res.body[0], 'open');
+          assert.property(res.body[0], '_id');
           done();
         });
       });

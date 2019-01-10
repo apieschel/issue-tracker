@@ -25,8 +25,6 @@ module.exports = function (app) {
         }
       }
     
-      console.log(conditions);
-
       const query = Issue.find(conditions);
       query.exec(function(err, issues) {
         if (err) throw err;
@@ -76,7 +74,8 @@ module.exports = function (app) {
           if(issue === null || issue === undefined) {
             res.json("Could not find that issue in our database.");
           } else {
-            if(req.body.issue_title === "" && req.body.issue_text === "" && req.body.created_by === "" && req.body.assigned_to === "" && req.body.status_text === "" && req.body.open === undefined) {
+            if(req.body.issue_title === "" && req.body.issue_text === "" && req.body.created_by === "" && req.body.assigned_to === "" && req.body.status_text === "" && req.body.open === undefined ||
+              req.body.issue_title === undefined && req.body.issue_text === undefined && req.body.created_by === undefined && req.body.assigned_to === undefined && req.body.status_text === undefined && req.body.open === undefined) {
                res.json("No update fields sent.");
             } else {
               if(err) throw err;
