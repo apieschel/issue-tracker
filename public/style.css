@@ -5,19 +5,42 @@ body {
   padding: 1% 5%;
 }
 
+a:visited {
+  color: blue;
+}
+
 h1, h2 {
   text-align: center;
 }
 
+li {
+  margin: 5px;
+}
+
 input, textarea {
   border-radius: 2px;
-  margin: 5px 0;
+  margin: 6px 0;
   padding: 5px;
   width: 220px;
 }
 
+button {
+  background: darkcyan;
+  border: 1px solid darkcyan; 
+  border-radius: 2px;
+  cursor: pointer;
+  margin-top: 10px;
+  padding: 5px 20px;
+  color: white;
+  font-size: 18px;
+}
+
+button:hover {
+  background: black;
+  border: 1px solid black;
+}
+
 input[type="checkbox"] {
-  margin-bottom: 20px;
   width: 10px;
 }
 
@@ -34,4 +57,9 @@ input[type="checkbox"] {
 
 .id {
   font-size: 10.5px;
+}
+
+#testui {
+  display: flex;
+  justify-content: space-around;
 }

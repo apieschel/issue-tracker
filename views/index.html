@@ -33,36 +33,44 @@
       <h2><a href="/apitest/">EXAMPLE: Go to <i>/apitest/</i> project issues</a></h2>
     </div>
     <hr>
+    
+    <h2>API Tests:</h2>
     <div id="testui">
-      <h2>API Tests:</h2>
-      <h3>Submit issue on <i>apitest</i></h3>
-      <form id="testForm" class="border">
-        <input type="text" name="issue_title" placeholder="*Title" required><br>
-        <textarea type="text" name="issue_text" placeholder="*Text" required></textarea><br>
-        <input type="text" name="created_by" placeholder="*Created by" required><br>
-        <input type="text" name="assigned_to" placeholder="(opt)Assigned to"><br>
-        <input type="text" name="status_text" placeholder="(opt)Status text"><br>
-        <button type="submit">Submit Issue</button>
-      </form><br>
-      <h3>Update issue on <i>apitest</i> (Change any or all to update issue on the _id supplied)</h3>
-      <form id="testForm2" class="border">
-        <input type="text" name="_id" placeholder="*_id" required><br>
-        <input type="text" name="issue_title" placeholder="(opt)Title"><br>
-        <textarea type="text" name="issue_text" placeholder="(opt)Text"></textarea><br>
-        <input type="text" name="created_by" placeholder="(opt)Created by"><br>
-        <input type="text" name="assigned_to" placeholder="(opt)Assigned to"><br>
-        <input type="text" name="status_text" placeholder="(opt)Status text"><br>
-        <label><input type="checkbox" name="open"> Check to close issue</label><br>
-        <button type="submit">Submit Issue</button>
-      </form><br>
-      <h3>Delete issue on <i>apitest</i></h3>
-      <form id="testForm3" class="border">
-        <input type="text" name="_id" placeholder="_id" required><br>
-        <button type="submit">Delete Issue</button>
-      </form>
-      <code id="jsonResult"></code>
+      <div>
+        <h3>Submit issue on <i>apitest</i></h3>
+        <form id="testForm" class="border">
+          <input type="text" name="issue_title" placeholder="*Title" required><br>
+          <textarea type="text" name="issue_text" placeholder="*Text" required></textarea><br>
+          <input type="text" name="created_by" placeholder="*Created by" required><br>
+          <input type="text" name="assigned_to" placeholder="(opt)Assigned to"><br>
+          <input type="text" name="status_text" placeholder="(opt)Status text"><br>
+          <button type="submit">Submit Issue</button>
+        </form><br>
+      </div>
+      <div>
+        <h3>Update issue on <i>apitest</i></h3>
+        <form id="testForm2" class="border">
+          <input type="text" name="_id" placeholder="*_id" required><br>
+          <input type="text" name="issue_title" placeholder="(opt)Title"><br>
+          <textarea type="text" name="issue_text" placeholder="(opt)Text"></textarea><br>
+          <input type="text" name="created_by" placeholder="(opt)Created by"><br>
+          <input type="text" name="assigned_to" placeholder="(opt)Assigned to"><br>
+          <input type="text" name="status_text" placeholder="(opt)Status text"><br>
+          <label><input type="checkbox" name="open"> Check to close issue</label><br>
+          <button type="submit">Submit Issue</button>
+        </form><br>
+      </div>
+      <div>
+        <h3>Delete issue on <i>apitest</i></h3>
+        <form id="testForm3" class="border">
+          <input type="text" name="_id" placeholder="_id" required><br>
+          <button type="submit">Delete Issue</button>
+        </form>
+      </div>
     </div>
+    
     <hr>
+    <code id="jsonResult"></code>
     
     <script src="https://code.jquery.com/jquery-2.2.1.min.js"
             integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
