@@ -1,8 +1,24 @@
 body {
-  background: cornsilk;
+  background: ivory;
   font-family: roboto;
-  font-size: 16px;
+  font-size: 18px;
   padding: 1% 5%;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+input, textarea {
+  border-radius: 2px;
+  margin: 5px 0;
+  padding: 5px;
+  width: 220px;
+}
+
+input[type="checkbox"] {
+  margin-bottom: 20px;
+  width: 10px;
 }
 
 .issue {
