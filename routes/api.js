@@ -1,12 +1,10 @@
 'use strict';
 
-const expect = require('chai').expect;
 const MongoClient = require('mongodb');
 const ObjectId = require('mongodb').ObjectID;
 const Issue = require("../models.js").issueModel;
 
 module.exports = function (app) {
-
   app.route('/api/issues/:project')
   
     .get(function (req, res){

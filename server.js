@@ -27,25 +27,21 @@ app.use(helmet({
       scriptSrc: ["'self'", "https://code.jquery.com"],
       imgSrc: ["'self'", "https://hyperdev.com", "https://glitch.com"]
     }
-   }
+  }
  }));
 
 app.use('/public', express.static(process.cwd() + '/public'));
-
 app.use(cors({origin: '*'})); //For FCC testing purposes only
-
-
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//Sample front-end
+// Sample front-end
 app.route('/:project/')
   .get(function (req, res) {
     res.sendFile(process.cwd() + '/views/issue.html');
   });
 
-//Index page (static HTML)
+// Index page (static HTML)
 app.route('/')
   .get(function (req, res) {
     res.sendFile(process.cwd() + '/views/index.html');
@@ -57,13 +53,13 @@ fccTestingRoutes(app);
 mongoose.connect(process.env.DB, {useNewUrlParser: true}, (err, db) => { 
    if(err) {
     console.log('Database error: ' + err);
-  } else { 
+   } else { 
     console.log('Successful database connection');
     
-    //Routing for API 
+    // Routing for API 
     apiRoutes(app);  
 
-    //404 Not Found Middleware
+    // 404 Not Found Middleware
     app.use(function(req, res, next) {
       res.status(404)
         .type('text')
