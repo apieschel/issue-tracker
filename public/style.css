@@ -21,7 +21,7 @@ input, textarea {
   border-radius: 2px;
   margin: 6px 0;
   padding: 5px;
-  width: 220px;
+  width: 300px;
 }
 
 button {
@@ -56,10 +56,14 @@ input[type="checkbox"] {
 }
 
 .id {
-  font-size: 10.5px;
+  font-size: 14px;
 }
 
 #testui {
   display: flex;
   justify-content: space-around;
+}
+
+.closeIssue {
+  margin: 10px;
 }
