@@ -44,7 +44,6 @@
       {
         let issues= [];
         data.forEach(function(ele) {
-          console.log(ele);
           let openstatus;
           (ele.open) ? openstatus = 'open' : openstatus = 'closed';
           let single = [

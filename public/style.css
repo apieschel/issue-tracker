@@ -18,9 +18,10 @@ li {
 }
 
 input, textarea {
+  border: 1px solid lightgrey;
   border-radius: 2px;
   margin: 6px 0;
-  padding: 5px;
+  padding: 6px;
   width: 300px;
 }
 

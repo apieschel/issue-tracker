@@ -15,20 +15,20 @@
     <div id="userstories">
       <ol>
         <li>The <b>POST</b> form data requires <i>issue_title</i>, <i>issue_text</i>, <i>created_by</i>. <i>Assigned_to</i> and <i>status_text</i> are optional.</li>
-        <li>The object saved (and returned) includes all of those fields (blank for optional no input), and also includes <i>created_on</i> (date/time), <i>updated_on</i> (date/time), <i>open</i>(boolean, true for open, false for closed), and <i>_id</i>.</li>
-        <li><b>PUT</b> <code>/api/issues/{projectname}</code> with an issue <i>_id</i> and any fields that apply to the object. "Successfully updated" or "could not update "+_id is returned. This request also updates <i>updated_on</i>. If no fields are sent, "no updated field sent" is returned.</li>
-        <li><b>DELETE</b> <code>/api/issues/{projectname}</code> with an issue <i>_id</i> to completely delete an issue object.</li>
+        <li>The object saved (and returned) includes all of those fields (blank for no input on optional fields), and also includes <i>created_on</i> (date/time), <i>updated_on</i> (date/time), <i>open</i> (boolean, true for open, false for closed), and <i>_id</i>.</li>
+        <li>To update an issue, <b>PUT</b> <code>/api/issues/{projectname}</code> with an issue <i>_id</i> and any fields that apply to the object. "Successfully updated" or "could not update "+_id is returned. This request also updates <i>updated_on</i>. If no fields are sent, "no updated field sent" is returned.</li>
+        <li><b>DELETE</b> <code>/api/issues/{projectname}</code> with an issue _id to completely delete an issue object.</li>
         <li><b>GET</b> <code>/api/issues/{projectname}</code> for an array of all issues on that specific project with all the information for each issue as was returned when posted.</li>
-        <li>Filter the GET request by passing along any field and value in the query(ie. <code>/api/issues/{project}?open=false</code>). You can pass along as many fields/values as you want.</li>
+        <li>Filter the GET request by passing along any field and value in the query (ie. <code>/api/issues/{project}?open=false</code>). You can pass along as many values as you want.</li>
       </ol>
       <br>
       <h3>Example get usage:</h3>
       <code>/api/issues/{project}</code><br>
       <code>/api/issues/{project}?open=true&amp;assigned_to=Alex</code><br>
       <h3>Example return:</h3>
-      <code>[{"_id":"5871dda29faedc3491ff93bb","issue_title":"Fix error in posting data","issue_text":"When we post data it has an error.","created_on":"2017-01-08T06:35:14.240Z","updated_on":"2017-01-08T06:35:14.240Z","created_by":"Joe","assigned_to":"Joe","open":true,"status_text":"In QA"},...]</code>
+      <code>[{"_id":"5871dda29faedc3491ff93bb","issue_title":"Fix error in posting data","issue_text":"When we post data it has an error.","created_on":"2017-01-08T06:35:14.240Z","updated_on":"2017-01-08T06:35:14.240Z","created_by":"Joe","assigned_to":"Alex","open":true,"status_text":"In QA"},...]</code>
       <br><br>
-      <h2><a href="/apitest/">EXAMPLE: Go to <i>/apitest/</i> project issues</a></h2>
+      <a href="/apitest/">EXAMPLE: Go to <i>/apitest/</i> project issues</a>
     </div>
     <hr>
     
