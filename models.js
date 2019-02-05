@@ -1,7 +1,7 @@
-let mongoose = require("mongoose");
-let Schema = mongoose.Schema;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
                     
-let issueSchema = new Schema({
+const issueSchema = new Schema({
 	title: String,
   text: String,
   created_by: String,
@@ -11,6 +11,6 @@ let issueSchema = new Schema({
   open: Boolean
 }, {timestamps: true} );
 
-let Issue = mongoose.model('Issue', issueSchema);
+const Issue = mongoose.model('Issue', issueSchema);
 
 exports.issueModel = Issue;
