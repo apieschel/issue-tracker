@@ -126,7 +126,7 @@ suite('Functional Tests', function() {
         chai.request(server)
         .put('/api/issues/test')
         .send({
-          _id: '5c36a5694d68e916adf32e35', 
+          _id: '5c58f5c456ca9d039c6dea02', 
           open: true // this actually means the checkbox is checked, so "open" will be switched to "false"
         })
         .end(function(err, res){
@@ -140,7 +140,7 @@ suite('Functional Tests', function() {
         chai.request(server)
         .put('/api/issues/test')
         .send({
-          _id: '5c36a5694d68e916adf32e36', 
+          _id: '5c58f5c456ca9d039c6dea02', 
           issue_text: 'updated text',
           assigned_to: 'me',
           status: 'unknown'
@@ -178,7 +178,7 @@ suite('Functional Tests', function() {
       test('One filter', function(done) {
         chai.request(server)
         .get('/api/issues/test')
-        .query({title: "Title 2"})
+        .query({title: "Title"})
         .end(function(err, res){
           assert.equal(res.status, 200);
           assert.isArray(res.body);
@@ -239,7 +239,7 @@ suite('Functional Tests', function() {
       test('Valid _id', function(done) {
         chai.request(server)
         .delete('/api/issues/test')
-        .send({ _id: '5c36af6a799d5739a70795f5' }) // replace with the id of the issue you want to delete
+        .send({ _id: '5c58f5c456ca9d039c6dea02' }) // replace with the id of the issue you want to delete
         .end(function(err, res){
           assert.equal(res.status, 200);
           expect(res.body).to.satisfy(function (message) {
