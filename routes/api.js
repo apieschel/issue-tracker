@@ -13,7 +13,7 @@ module.exports = function (app) {
     
       let conditions = {};
 
-      for (var key in req.query) {
+      for(var key in req.query) {
         if (req.query.hasOwnProperty(key)) {
           if(key === 'open') {
             conditions[key] = JSON.parse(req.query[key]);
@@ -30,7 +30,7 @@ module.exports = function (app) {
       });
     })
     
-    .post(function (req, res){
+    .post(function(req, res) {
       const project = req.params.project;
       const title = req.body.issue_title;
       const text = req.body.issue_text; 
@@ -64,7 +64,7 @@ module.exports = function (app) {
       }
     })
     
-    .put(function (req, res){
+    .put(function(req, res) {
       if(req.body._id === "" || req.body._id === undefined || req.body._id.length !== 24) {
         res.json("Please enter an ID that is exactly 24 characters.");
       } else {
@@ -103,7 +103,7 @@ module.exports = function (app) {
       }
     })
     
-    .delete(function (req, res){
+    .delete(function(req, res) {
       if(req.body._id === "" || req.body._id === undefined || req.body._id.length !== 24) {
         res.json("Please enter an ID that is exactly 24 characters.");
       } else {
@@ -117,5 +117,4 @@ module.exports = function (app) {
         }); 
       }
     });
-    
 };
