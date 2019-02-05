@@ -126,7 +126,7 @@ suite('Functional Tests', function() {
         chai.request(server)
         .put('/api/issues/test')
         .send({
-          _id: '5c58f5c456ca9d039c6dea02', 
+          _id: '5c58f6cb2c5bb804f11f93f1', 
           open: true // this actually means the checkbox is checked, so "open" will be switched to "false"
         })
         .end(function(err, res){
@@ -140,7 +140,7 @@ suite('Functional Tests', function() {
         chai.request(server)
         .put('/api/issues/test')
         .send({
-          _id: '5c58f5c456ca9d039c6dea02', 
+          _id: '5c58f6cb2c5bb804f11f93f0', 
           issue_text: 'updated text',
           assigned_to: 'me',
           status: 'unknown'
@@ -201,7 +201,7 @@ suite('Functional Tests', function() {
         .get('/api/issues/test')
         .query({
           title: "Title",
-          open: false,
+          open: true,
           status: 'In QA'
         })
         .end(function(err, res){
