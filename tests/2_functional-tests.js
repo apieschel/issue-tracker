@@ -7,7 +7,6 @@ const server = require('../server');
 chai.use(chaiHttp);
 
 suite('Functional Tests', function() {
-  
     suite('POST /api/issues/{project} => object with issue data', function() {
       
       test('Every field filled in', function(done) {
@@ -42,7 +41,7 @@ suite('Functional Tests', function() {
                     return false;
                   }
                 } 
-                // if the issue is already in the database, then the check for the correct String message is above, so return true
+                // if the issue is already in the database, then the check for the correct String message has already passed, so return true
                 else {
                   return true;
                 }
@@ -83,7 +82,7 @@ suite('Functional Tests', function() {
                     return false;
                   }
                 } 
-                // if the issue is already in the database, then the check for the correct String message is above, so return true
+                // if the issue is already in the database, then the check for the correct String message has already passed, so return true
                 else {
                   return true;
                 }
@@ -127,7 +126,7 @@ suite('Functional Tests', function() {
         .put('/api/issues/test')
         .send({
           _id: '5c58f6cb2c5bb804f11f93f1', 
-          open: true // this actually means the checkbox is checked, so "open" will be switched to "false"
+          open: true // this actually means the "Close Issue" checkbox is checked, so "open" will be switched to "false"
         })
         .end(function(err, res){
           assert.equal(res.status, 200);
