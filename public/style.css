@@ -5,6 +5,12 @@ body {
   padding: 1% 5%;
 }
 
+body .glitchButton {
+  position: fixed;
+  right: 20px; 
+  top: 20px;
+}
+
 a:visited {
   color: blue;
 }

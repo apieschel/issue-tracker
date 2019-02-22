@@ -22,10 +22,10 @@ app.use(helmet({
   },
   contentSecurityPolicy: {
     directives: {
-      defaultSrc: ["'self'"],
-      styleSrc: ["'self'"],
-      scriptSrc: ["'self'", "https://code.jquery.com"],
-      imgSrc: ["'self'", "https://hyperdev.com", "https://glitch.com"]
+      defaultSrc: ["'self'", "https://api.glitch.com"],
+      styleSrc: ["'self'", "https://button.glitch.me"],
+      scriptSrc: ["'self'", "https://code.jquery.com", "https://button.glitch.me", "https://api.glitch.com"],
+      imgSrc: ["'self'", "https://hyperdev.com", "https://glitch.com", "https://cdn.glitch.com", "https://s3.amazonaws.com"]
     }
   }
  }));

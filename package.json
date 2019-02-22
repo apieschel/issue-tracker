@@ -12,11 +12,11 @@
     "chai-http": "^4.2.1",
     "cors": "^2.8.5",
     "express": "^4.16.4",
-    "helmet": "^3.15.0",
+    "helmet": "^3.15.1",
     "mocha": "^5.2.0",
     "mongodb": "^3.1.11",
     "zombie": "^6.1.4",
-    "mongoose": "^5.4.9"
+    "mongoose": "^5.4.13"
   },
   "engines": {
     "node": "4.4.3"
